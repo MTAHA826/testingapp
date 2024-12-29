@@ -4,6 +4,9 @@ langchain
 langsmith
 transformers 
 qdrant_client
+librosa
+transformers
+streamlit-mic-recorder
 langchain-qdrant
 streamlit
 bs4

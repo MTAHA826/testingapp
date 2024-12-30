@@ -90,7 +90,7 @@ def send_input():
     send_btn= st.button("Send", key="send_btn")  # Single send button
 
 if voice_recording:
-    transcribe=transcribe(voice_recording_column['bytes'])
+    transcribe=transcribe_audio(voice_recording_column['bytes'])
     
 # Chat logic
 if send_btn or send_input and query:

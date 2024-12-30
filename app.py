@@ -83,11 +83,17 @@ def send_input():
 # Input field for queries
 #with st.container():
     query = st.text_input("Please enter a query", key="query", on_change=send_input)
-    
-    send_button = st.button("Send", key="send_btn")  # Single send button
+    voice_recording_column,send_btn_column=st.columns(2)
+    with voice_recording_column:
+        voice_recording=mic_recorder(start_prompt="Start recording", stop_prompt="Stop_recording", just_once=True)
+    with send_btn_column:
+    send_btn= st.button("Send", key="send_btn")  # Single send button
 
+if voice_recording:
+    transcribe=transcribe(voice_recording_column['bytes'])
+    
 # Chat logic
-if send_button or send_input and query:
+if send_btn or send_input and query:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
         response = _chain.invoke({'question': query})  # Generate response
     # Update session state with user query and AI response

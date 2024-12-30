@@ -82,12 +82,12 @@ def send_input():
     st.session_state.send_input=True
 # Input field for queries
 #with st.container():
-    query = st.text_input("Please enter a query", key="query", on_change=send_input)
-    voice_recording_column,send_btn_column=st.columns(2)
-    with voice_recording_column:
-        voice_recording=mic_recorder(start_prompt="Start recording", stop_prompt="Stop_recording", just_once=True)
-    with send_btn_column:
-    send_btn= st.button("Send", key="send_btn")  # Single send button
+query = st.text_input("Please enter a query", key="query", on_change=send_input)
+voice_recording_column,send_btn_column=st.columns(2)
+with voice_recording_column:
+    voice_recording=mic_recorder(start_prompt="Start recording", stop_prompt="Stop_recording", just_once=True)
+with send_btn_column:
+send_btn= st.button("Send", key="send_btn")  # Single send button
 
 if voice_recording:
     transcribe=transcribe_audio(voice_recording['bytes'])

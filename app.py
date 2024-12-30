@@ -1,6 +1,8 @@
 import os
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
+from audio import transcribe_audio
+from streamlit_mic_recorder import mic_recorder
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_qdrant import QdrantVectorStore
@@ -79,8 +81,9 @@ if "messages" not in st.session_state:
 def send_input():
     st.session_state.send_input=True
 # Input field for queries
-with st.container():
+#with st.container():
     query = st.text_input("Please enter a query", key="query", on_change=send_input)
+    
     send_button = st.button("Send", key="send_btn")  # Single send button
 
 # Chat logic

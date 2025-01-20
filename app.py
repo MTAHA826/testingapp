@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
-from audio import transcribe_audio
 from streamlit_mic_recorder import mic_recorder
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -83,14 +82,8 @@ def send_input():
 # Input field for queries
 #with st.container():
 query = st.text_input("Please enter a query", key="query", on_change=send_input)
-voice_recording_column,send_btn_column=st.columns(2)
-with voice_recording_column:
-    voice_recording=mic_recorder(start_prompt="Start recording", stop_prompt="Stop_recording", just_once=True)
-with send_btn_column:
-    send_btn= st.button("Send", key="send_btn")  # Single send button
+send_btn= st.button("Send", key="send_btn")  # Single send button
 
-if voice_recording:
-    transcribe=transcribe_audio(voice_recording['bytes'])
     
 # Chat logic
 if send_btn or send_input and query:
